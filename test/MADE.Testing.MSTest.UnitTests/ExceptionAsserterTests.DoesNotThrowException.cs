@@ -6,7 +6,7 @@ namespace MADE.Testing.MSTest.UnitTests
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    public partial class AsserterTests
+    public partial class ExceptionAsserterTests
     {
         [TestMethod]
         public void DoesNotThrowException_NullAction_ShouldThrowArgumentNullException()
@@ -14,7 +14,7 @@ namespace MADE.Testing.MSTest.UnitTests
             Assert.ThrowsException<ArgumentNullException>(
                 () =>
                 {
-                    Asserter.DoesNotThrowException(null);
+                    ExceptionAsserter.DoesNotThrowException(null);
                 });
         }
         
@@ -24,14 +24,14 @@ namespace MADE.Testing.MSTest.UnitTests
             Assert.ThrowsException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.DoesNotThrowException(() => throw new Exception());
+                    ExceptionAsserter.DoesNotThrowException(() => throw new Exception());
                 });
         }
 
         [TestMethod]
         public void DoesNotThrowException_ActionThrowsInheritedException_ShouldNotThrowAssertFailedException()
         {
-            Asserter.DoesNotThrowException(() => throw new TestException());
+            ExceptionAsserter.DoesNotThrowException(() => throw new TestException());
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace MADE.Testing.MSTest.UnitTests
             Assert.ThrowsException<ArgumentNullException>(
                 () =>
                 {
-                    Asserter.DoesNotThrowException<TestException>(null);
+                    ExceptionAsserter.DoesNotThrowException<TestException>(null);
                 });
         }
         
@@ -50,14 +50,14 @@ namespace MADE.Testing.MSTest.UnitTests
             Assert.ThrowsException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.DoesNotThrowException<TestException>(() => throw new TestException());
+                    ExceptionAsserter.DoesNotThrowException<TestException>(() => throw new TestException());
                 });
         }
 
         [TestMethod]
         public void DoesNotThrowGenericException_ActionThrowsNotExpectedException_ShouldNotThrowAssertFailedException()
         {
-            Asserter.DoesNotThrowException<TestException>(() => throw new Exception());
+            ExceptionAsserter.DoesNotThrowException<TestException>(() => throw new Exception());
         }
     }
 }

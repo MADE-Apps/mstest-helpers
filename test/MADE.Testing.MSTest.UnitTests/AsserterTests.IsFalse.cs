@@ -23,7 +23,7 @@ namespace MADE.Testing.MSTest.UnitTests
         {
             var o = new TestObject { PropertyTest = false };
 
-            Asserter.DoesNotThrowException<AssertFailedException>(
+            ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
                 () =>
                 {
                     Asserter.IsFalse(() => o.PropertyTest);
@@ -47,7 +47,7 @@ namespace MADE.Testing.MSTest.UnitTests
         {
             var o = new TestObject();
 
-            Asserter.DoesNotThrowException<AssertFailedException>(
+            ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
                 () =>
                 {
                     Asserter.IsFalse(() => o.MethodTest(false));
