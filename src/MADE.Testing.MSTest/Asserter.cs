@@ -84,6 +84,8 @@ namespace MADE.Testing.MSTest
         /// <param name="condition">
         /// Delegate to code to be tested and which is expected to not throw an exception.
         /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">Thrown if <paramref name="condition"/> throws exception of type <typeparamref name="T"/>. </exception>
+        /// <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="condition"/> is <see langword="null"/>.</exception>
         public static void DoesNotThrowException(Action condition)
         {
             DoesNotThrowException<Exception>(condition, string.Empty);
@@ -98,6 +100,8 @@ namespace MADE.Testing.MSTest
         /// <param name="message">
         /// The message to include in the exception when <paramref name="condition" /> throws an exception.
         /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">Thrown if <paramref name="condition"/> throws exception of type <typeparamref name="T"/>. </exception>
+        /// <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="condition"/> is <see langword="null"/>.</exception>
         public static void DoesNotThrowException(Action condition, string message)
         {
             DoesNotThrowException<Exception>(condition, message);
@@ -106,9 +110,12 @@ namespace MADE.Testing.MSTest
         /// <summary>
         /// Tests whether the code specified by delegate <paramref name="condition" /> does not throw an exception.
         /// </summary>
+        /// <typeparam name="T">Type of exception expected to be thrown.</typeparam>
         /// <param name="condition">
         /// Delegate to code to be tested and which is expected to not throw an exception.
         /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">Thrown if <paramref name="condition"/> throws exception of type <typeparamref name="T"/>. </exception>
+        /// <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="condition"/> is <see langword="null"/>.</exception>
         public static void DoesNotThrowException<T>(Action condition) where T : Exception
         {
             DoesNotThrowException<T>(condition, string.Empty);
@@ -124,9 +131,7 @@ namespace MADE.Testing.MSTest
         /// <param name="message">
         /// The message to include in the exception when <paramref name="condition"/> throws an exception.
         /// </param>
-        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
-        /// Thrown if <paramref name="condition"/> throws exception of type <typeparamref name="T"/>.
-        /// </exception>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">Thrown if <paramref name="condition"/> throws exception of type <typeparamref name="T"/>. </exception>
         /// <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="condition"/> or <paramref name="message"/> is <see langword="null"/>.</exception>
         public static void DoesNotThrowException<T>(Action condition, string message) where T : Exception
         {
