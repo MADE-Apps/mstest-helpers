@@ -1,0 +1,89 @@
+trigger:
+  branches:
+    include: 
+    - master
+
+name: MADE MSTest Extension Library - $(major).$(minor).$(Year:yy)$(DayOfYear).$(rev:r)$(prerelease)  # build numbering format
+
+stages:
+- stage: Build
+  jobs:
+  - job:
+    pool: Hosted VS2017
+    displayName: Build
+    variables:
+      solution: '**/*.sln'
+      buildPlatform: 'Any CPU'
+      buildConfiguration: 'Release'
+    steps:
+    - task: NuGetToolInstaller@1
+      displayName: 'Install NuGet'
+      inputs:
+        versionSpec: '$(nugetVersion)'
+
+    - task: NuGetCommand@2
+      displayName: 'Restore NuGet packages'
+      inputs:
+        restoreSolution: '$(solution)'
+
+    - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-DotNetCoreAssemblies-Task.VersionDotNetCoreAssemblies@2
+      displayName: 'Version .NET Core projects'
+      inputs:
+        Path: '$(Build.SourcesDirectory)'
+        VersionNumber: '$(Build.BuildNumber)'
+        Injectversion: False
+        VersionRegex: '\d+.\d+.\d+.\d+(\-[a-z]+)?'
+        FilenamePattern: '.csproj'
+        SDKNames: 'Microsoft.NET.Sdk,MSBuild.Sdk.Extras'
+        OutputVersion: 'OutputedVersion'
+
+    # Build solution
+    - task: VSBuild@1
+      displayName: 'Build SDK'
+      inputs:
+        solution: '$(solution)'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'        
+        clean: true
+        maximumCpuCount: true
+
+    # Run unit tests
+    - task: DotNetCoreCLI@2
+      displayName: 'DotNetCore Test'
+      inputs:
+        command: 'test'
+        projects: '**/*.UnitTests.csproj'
+        arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --no-restore'
+
+    # Publish artifacts
+    - task: CopyFiles@2
+      displayName: 'Copy NuGet packages for publish'
+      inputs:
+        Contents: '**\*.nupkg'
+        TargetFolder: '$(build.artifactstagingdirectory)\packages'
+        CleanTargetFolder: true
+
+    - publish: $(Build.ArtifactStagingDirectory)
+      artifact: Drop
+
+- stage: Release
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  jobs:
+  - job: 
+    pool: Hosted VS2017
+    workspace:
+      clean: all
+    displayName: Release
+    steps:
+    - download: current
+    - task: NuGetToolInstaller@1
+      displayName: 'Get NuGet Version'
+      inputs:
+        versionSpec: '$(nugetVersion)'
+    - task: NuGetCommand@2
+      displayName: 'Push to NuGet'
+      inputs:
+        command: push
+        packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
+        nuGetFeedType: external
+        publishFeedCredentials: 'NuGet - MADE Apps'
