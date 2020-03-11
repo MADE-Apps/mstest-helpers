@@ -2,6 +2,11 @@ trigger:
   branches:
     include: 
     - master
+  paths:
+    include:
+    - '*'
+    exclude:
+    - '*.md'
 
 name: MADE MSTest Extension Library - $(major).$(minor).$(Year:yy)$(DayOfYear).$(rev:r)$(prerelease)  # build numbering format
 
