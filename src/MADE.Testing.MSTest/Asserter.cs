@@ -77,12 +77,12 @@ namespace MADE.Testing.MSTest
             {
                 case null:
                     Assert.Fail(
-                        $"AssertHelper.IsTrue failed. Expected:<True>. Actual:<NULL>. Failed on: {argumentName}. {message}");
+                        $"{nameof(Asserter.IsTrue)} failed. Expected:<True>. Actual:<NULL>. Failed on: {argumentName}. {message}");
                     break;
                 default:
                     Assert.IsTrue(
                         value.Value,
-                        $"AssertHelper.IsTrue failed. Expected:<True>. Actual:<{value.Value}>. Failed on: {argumentName}. {message}");
+                        $"{nameof(Asserter.IsTrue)} failed. Expected:<True>. Actual:<{value.Value}>. Failed on: {argumentName}. {message}");
                     break;
             }
         }
@@ -152,12 +152,12 @@ namespace MADE.Testing.MSTest
             {
                 case null:
                     Assert.Fail(
-                        $"AssertHelper.IsFalse failed. Expected:<False>. Actual:<NULL>. Failed on: {argumentName}. {message}");
+                        $"{nameof(Asserter.IsFalse)} failed. Expected:<False>. Actual:<NULL>. Failed on: {argumentName}. {message}");
                     break;
                 default:
                     Assert.IsFalse(
                         value.Value,
-                        $"AssertHelper.IsFalse failed. Expected:<False>. Actual:<{value.Value}>. Failed on: {argumentName}. {message}");
+                        $"{nameof(Asserter.IsFalse)} failed. Expected:<False>. Actual:<{value.Value}>. Failed on: {argumentName}. {message}");
                     break;
             }
         }
@@ -212,7 +212,7 @@ namespace MADE.Testing.MSTest
 
             Assert.IsNull(
                 value,
-                $"AssertHelper.IsNull failed. Expected:<NULL>. Actual:<{value}>. Failed on: {argumentName}.");
+                $"{nameof(Asserter.IsNull)} failed. Expected:<NULL>. Actual:<{value}>. Failed on: {argumentName}.");
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace MADE.Testing.MSTest
 
             Assert.IsNotNull(
                 value,
-                $"AssertHelper.IsNotNull failed. Expected:<{value}>. Actual:<NULL>. Failed on: {argumentName}.");
+                $"{nameof(Asserter.IsNotNull)} failed. Expected:<{value}>. Actual:<NULL>. Failed on: {argumentName}.");
         }
     }
 }
