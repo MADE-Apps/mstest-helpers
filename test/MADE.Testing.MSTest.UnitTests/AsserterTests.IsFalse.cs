@@ -9,7 +9,7 @@ namespace MADE.Testing.MSTest.UnitTests
     public partial class AsserterTests
     {
         [TestMethod]
-        public void IsFalse_ConditionIsNull_ShouldThrowArgumentNullException()
+        public void IsFalse_ExpressionIsNull_ShouldThrowArgumentNullException()
         {
             Assert.ThrowsException<ArgumentNullException>(
                 () =>

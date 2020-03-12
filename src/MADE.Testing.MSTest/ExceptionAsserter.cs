@@ -19,7 +19,7 @@ namespace MADE.Testing.MSTest
         /// <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="condition"/> is <see langword="null"/>.</exception>
         public static void DoesNotThrowException(Action condition)
         {
-            DoesNotThrowException<Exception>(condition, string.Empty);
+            DoesNotThrowException(condition, string.Empty);
         }
 
         /// <summary>
@@ -71,11 +71,6 @@ namespace MADE.Testing.MSTest
             if (condition == null)
             {
                 throw new ArgumentNullException(nameof(condition));
-            }
-
-            if (message == null)
-            {
-                throw new ArgumentNullException(nameof(message));
             }
 
             try

@@ -10,7 +10,7 @@ namespace MADE.Testing.MSTest.UnitTests
     public partial class AsserterTests
     {
         [TestMethod]
-        public void IsTrueNullable_ConditionIsNull_ShouldThrowArgumentNullException()
+        public void IsTrueNullable_ExpressionIsNull_ShouldThrowArgumentNullException()
         {
             Assert.ThrowsException<ArgumentNullException>(
                 () =>

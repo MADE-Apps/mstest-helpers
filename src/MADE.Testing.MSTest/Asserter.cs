@@ -161,5 +161,111 @@ namespace MADE.Testing.MSTest
                     break;
             }
         }
+
+        /// <summary>
+        /// Tests whether the specified condition is null and throws an exception if the condition is not null.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of object to run a function on.
+        /// </typeparam>
+        /// <param name="condition">
+        /// The condition the test expects to be null.
+        /// </param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// Thrown if <paramref name="condition"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not null.
+        /// </exception>
+        public static void IsNull<T>(Expression<Func<T>> condition)
+        {
+            IsNull<T>(condition, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is null and throws an exception if the condition is not null.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of object to run a function on.
+        /// </typeparam>
+        /// <param name="condition">
+        /// The condition the test expects to be null.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not null. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// Thrown if <paramref name="condition"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not null.
+        /// </exception>
+        public static void IsNull<T>(Expression<Func<T>> condition, string message)
+        {
+            if (condition == null)
+            {
+                throw new ArgumentNullException(nameof(condition));
+            }
+
+            string argumentName = condition.GetArgumentName();
+            T value = condition.Compile().Invoke();
+
+            Assert.IsNull(
+                value,
+                $"AssertHelper.IsNull failed. Expected:<NULL>. Actual:<{value}>. Failed on: {argumentName}.");
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is not null and throws an exception if the condition is null.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of object to run a function on.
+        /// </typeparam>
+        /// <param name="condition">
+        /// The condition the test expects to be not null.
+        /// </param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// Thrown if <paramref name="condition"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is null.
+        /// </exception>
+        public static void IsNotNull<T>(Expression<Func<T>> condition)
+        {
+            IsNotNull<T>(condition, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is not null and throws an exception if the condition is null.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of object to run a function on.
+        /// </typeparam>
+        /// <param name="condition">
+        /// The condition the test expects to be not null.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is null. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// Thrown if <paramref name="condition"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is null.
+        /// </exception>
+        public static void IsNotNull<T>(Expression<Func<T>> condition, string message)
+        {
+            if (condition == null)
+            {
+                throw new ArgumentNullException(nameof(condition));
+            }
+
+            string argumentName = condition.GetArgumentName();
+            T value = condition.Compile().Invoke();
+
+            Assert.IsNotNull(
+                value,
+                $"AssertHelper.IsNotNull failed. Expected:<{value}>. Actual:<NULL>. Failed on: {argumentName}.");
+        }
     }
 }

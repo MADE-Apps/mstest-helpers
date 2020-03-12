@@ -9,7 +9,7 @@ namespace MADE.Testing.MSTest.UnitTests
     public partial class ExceptionAsserterTests
     {
         [TestMethod]
-        public void DoesNotThrowException_NullAction_ShouldThrowArgumentNullException()
+        public void DoesNotThrowException_ActionIsNull_ShouldThrowArgumentNullException()
         {
             Assert.ThrowsException<ArgumentNullException>(
                 () =>
@@ -35,7 +35,7 @@ namespace MADE.Testing.MSTest.UnitTests
         }
 
         [TestMethod]
-        public void DoesNotThrowGenericException_NullAction_ShouldThrowArgumentNullException()
+        public void DoesNotThrowGenericException_ActionIsNull_ShouldThrowArgumentNullException()
         {
             Assert.ThrowsException<ArgumentNullException>(
                 () =>
