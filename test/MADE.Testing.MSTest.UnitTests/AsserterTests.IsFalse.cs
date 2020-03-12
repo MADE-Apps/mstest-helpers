@@ -21,24 +21,24 @@ namespace MADE.Testing.MSTest.UnitTests
         [TestMethod]
         public void IsFalse_ConditionIsFalseBooleanProperty_ShouldNotThrowAssertFailedException()
         {
-            var o = new TestObject { PropertyTest = false };
+            var o = new TestObject { BooleanPropertyTest = false };
 
             ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.IsFalse(() => o.PropertyTest);
+                    Asserter.IsFalse(() => o.BooleanPropertyTest);
                 });
         }
 
         [TestMethod]
         public void IsFalse_ConditionIsTrueBooleanProperty_ShouldThrowAssertFailedException()
         {
-            var o = new TestObject { PropertyTest = true };
+            var o = new TestObject { BooleanPropertyTest = true };
 
             Assert.ThrowsException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.IsFalse(() => o.PropertyTest);
+                    Asserter.IsFalse(() => o.BooleanPropertyTest);
                 });
         }
 
@@ -50,7 +50,7 @@ namespace MADE.Testing.MSTest.UnitTests
             ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.IsFalse(() => o.MethodTest(false));
+                    Asserter.IsFalse(() => o.BooleanMethodTest(false));
                 });
         }
 
@@ -62,19 +62,19 @@ namespace MADE.Testing.MSTest.UnitTests
             Assert.ThrowsException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.IsFalse(() => o.MethodTest(true));
+                    Asserter.IsFalse(() => o.BooleanMethodTest(true));
                 });
         }
 
         [TestMethod]
         public void IsFalse_ConditionIsSimpleAndBinaryExpressionThatReturnsFalse_ShouldNotThrowAssertFailedException()
         {
-            var o = new TestObject { PropertyTest = true };
+            var o = new TestObject { BooleanPropertyTest = true };
 
             ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
                 () =>
                 {
-                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(true)));
+                    Asserter.IsFalse(() => !(o.BooleanPropertyTest && o.BooleanMethodTest(true)));
                 });
         }
 
@@ -82,27 +82,27 @@ namespace MADE.Testing.MSTest.UnitTests
         public void
             IsFalse_ConditionIsComplexAndOrBinaryExpressionThatReturnsTrueForLeftPartButFalseForRightPart_ShouldNotThrowAssertFailedException()
         {
-            var o = new TestObject { PropertyTest = true };
-            var p = new TestObject { PropertyTest = false };
+            var o = new TestObject { BooleanPropertyTest = true };
+            var p = new TestObject { BooleanPropertyTest = false };
 
             ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
                 () =>
                 {
                     // (!(true && true) || false ) == false
-                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(true)) || p.PropertyTest);
+                    Asserter.IsFalse(() => !(o.BooleanPropertyTest && o.BooleanMethodTest(true)) || p.BooleanPropertyTest);
                 });
         }
 
         [TestMethod]
         public void IsFalse_ConditionIsSimpleAndBinaryExpressionThatReturnsTrue_ShouldThrowAssertFailedException()
         {
-            var o = new TestObject { PropertyTest = false };
+            var o = new TestObject { BooleanPropertyTest = false };
 
             Assert.ThrowsException<AssertFailedException>(
                 () =>
                 {
                     // (!(false && true)) == true
-                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(true)));
+                    Asserter.IsFalse(() => !(o.BooleanPropertyTest && o.BooleanMethodTest(true)));
                 });
         }
 
@@ -110,14 +110,14 @@ namespace MADE.Testing.MSTest.UnitTests
         public void
             IsFalse_ConditionIsComplexAndOrBinaryExpressionThatReturnsTrueForAllParts_ShouldThrowAssertFailedException()
         {
-            var o = new TestObject { PropertyTest = true };
-            var p = new TestObject { PropertyTest = true };
+            var o = new TestObject { BooleanPropertyTest = true };
+            var p = new TestObject { BooleanPropertyTest = true };
 
             Assert.ThrowsException<AssertFailedException>(
                 () =>
                 {
                     // (!(true && false) || true) == true
-                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(false)) || p.PropertyTest);
+                    Asserter.IsFalse(() => !(o.BooleanPropertyTest && o.BooleanMethodTest(false)) || p.BooleanPropertyTest);
                 });
         }
     }
