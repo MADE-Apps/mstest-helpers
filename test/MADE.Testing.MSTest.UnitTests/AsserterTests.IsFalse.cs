@@ -65,5 +65,60 @@ namespace MADE.Testing.MSTest.UnitTests
                     Asserter.IsFalse(() => o.MethodTest(true));
                 });
         }
+
+        [TestMethod]
+        public void IsFalse_ConditionIsSimpleAndBinaryExpressionThatReturnsFalse_ShouldNotThrowAssertFailedException()
+        {
+            var o = new TestObject { PropertyTest = true };
+
+            ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
+                () =>
+                {
+                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(true)));
+                });
+        }
+
+        [TestMethod]
+        public void
+            IsFalse_ConditionIsComplexAndOrBinaryExpressionThatReturnsTrueForLeftPartButFalseForRightPart_ShouldNotThrowAssertFailedException()
+        {
+            var o = new TestObject { PropertyTest = true };
+            var p = new TestObject { PropertyTest = false };
+
+            ExceptionAsserter.DoesNotThrowException<AssertFailedException>(
+                () =>
+                {
+                    // (!(true && true) || false ) == false
+                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(true)) || p.PropertyTest);
+                });
+        }
+
+        [TestMethod]
+        public void IsFalse_ConditionIsSimpleAndBinaryExpressionThatReturnsTrue_ShouldThrowAssertFailedException()
+        {
+            var o = new TestObject { PropertyTest = false };
+
+            Assert.ThrowsException<AssertFailedException>(
+                () =>
+                {
+                    // (!(false && true)) == true
+                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(true)));
+                });
+        }
+
+        [TestMethod]
+        public void
+            IsFalse_ConditionIsComplexAndOrBinaryExpressionThatReturnsTrueForAllParts_ShouldThrowAssertFailedException()
+        {
+            var o = new TestObject { PropertyTest = true };
+            var p = new TestObject { PropertyTest = true };
+
+            Assert.ThrowsException<AssertFailedException>(
+                () =>
+                {
+                    // (!(true && false) || true) == true
+                    Asserter.IsFalse(() => !(o.PropertyTest && o.MethodTest(false)) || p.PropertyTest);
+                });
+        }
     }
 }

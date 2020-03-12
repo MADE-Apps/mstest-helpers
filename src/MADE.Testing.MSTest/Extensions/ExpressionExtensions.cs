@@ -24,9 +24,6 @@ namespace MADE.Testing.MSTest.Extensions
         /// <exception cref="T:System.ArgumentNullException">
         /// Thrown if the property expression is null.
         /// </exception>
-        /// <exception cref="T:System.ArgumentException">
-        /// Thrown if the argument is invalid or not a property.
-        /// </exception>
         internal static string GetArgumentName<T>(this Expression<Func<T>> argumentExpression)
         {
             if (object.Equals(argumentExpression, null))
@@ -34,23 +31,23 @@ namespace MADE.Testing.MSTest.Extensions
                 throw new ArgumentNullException(nameof(argumentExpression));
             }
 
-            MemberInfo member = null;
+            string argumentName = null;
             switch (argumentExpression.Body)
             {
                 case MemberExpression memberExpression:
-                    member = memberExpression.Member;
+                    argumentName = memberExpression.Member?.Name;
                     break;
                 case MethodCallExpression methodCallExpression:
-                    member = methodCallExpression.Method;
+                    argumentName = methodCallExpression.Method?.Name;
                     break;
             }
 
-            if (member == null)
+            if (string.IsNullOrWhiteSpace(argumentName))
             {
-                throw new ArgumentException("Invalid argument", nameof(argumentExpression));
+                argumentName = nameof(argumentExpression);
             }
 
-            return member.Name;
+            return argumentName;
         }
     }
 }
