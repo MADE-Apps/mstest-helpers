@@ -267,5 +267,345 @@ namespace MADE.Testing.MSTest
                 value,
                 $"{nameof(Asserter.IsNotNull)} failed. Expected:<{value}>. Actual:<NULL>. Failed on: {argumentName}.");
         }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(byte condition, byte minimum, byte maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(byte condition, byte minimum, byte maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(sbyte condition, sbyte minimum, sbyte maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(sbyte condition, sbyte minimum, sbyte maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(short condition, short minimum, short maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(short condition, short minimum, short maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(ushort condition, ushort minimum, ushort maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(ushort condition, ushort minimum, ushort maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(int condition, int minimum, int maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(int condition, int minimum, int maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(uint condition, uint minimum, uint maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(uint condition, uint minimum, uint maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(long condition, long minimum, long maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(long condition, long minimum, long maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(ulong condition, ulong minimum, ulong maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(ulong condition, ulong minimum, ulong maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(double condition, double minimum, double maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(double condition, double minimum, double maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(decimal condition, decimal minimum, decimal maximum)
+        {
+            IsInRange(condition, minimum, maximum, string.Empty);
+        }
+
+        /// <summary>
+        /// Tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+        /// </summary>
+        /// <param name="condition">
+        /// The condition the test expects to be in the expected range.
+        /// </param>
+        /// <param name="message">
+        /// The message to include in the exception when <paramref name="condition"/> is not in the range. The message is shown in test results.
+        /// </param>
+        /// <exception cref="T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException">
+        /// Thrown if <paramref name="condition"/> is not in range.
+        /// </exception>
+        public static void IsInRange(decimal condition, decimal minimum, decimal maximum, string message)
+        {
+            if (condition < minimum || condition > maximum)
+            {
+                Assert.Fail($"{nameof(Asserter.IsInRange)} failed. Expected between:{minimum}-{maximum}. Actual:{condition}. {message}");
+            }
+        }
     }
 }

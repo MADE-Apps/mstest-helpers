@@ -103,3 +103,40 @@ public void TestObject_WhenNullableBooleanMethodCalledWithTrueParameter_ShouldSe
     Asserter.IsNotNull(() => o.NullableBooleanPropertyTest);
 }
 ```
+
+## IsInRange
+
+This method tests whether the specified condition is in the valid minimum and maximum range and throws an exception if the condition is not met.
+
+| Supported Data Types |
+| --- |
+| byte |
+| sbyte |
+| short |
+| ushort |
+| int |
+| uint |
+| long |
+| ulong |
+| double |
+| decimal |
+
+**Example**
+
+```csharp
+[TestMethod]
+public void Synchronize_WhenCalled_ShouldSetRevisionWithinExpectedRange1To50()
+{
+    // Arrange
+
+    var o = new TestObject();
+
+    // Act
+
+    o.Synchronize();
+
+    // Assert
+
+    Asserter.IsInRange(o.Revision, 1, 50);
+}
+```
